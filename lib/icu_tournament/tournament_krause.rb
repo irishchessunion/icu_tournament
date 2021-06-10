@@ -470,7 +470,7 @@ module ICU
         return false unless total <= sum + full_byes.size * 1.0 + half_byes.size * 0.5
         full_byes.each_index do |i|
           bye = full_byes[i]
-          if bye.class == Fixnum
+          if bye.class == Integer
             # Round number - create a half-point bye in that round.
             result = Result.new(bye, player, '=')
             @results << ['none', player, "extra bye for player #{player} in round #{bye}", result]

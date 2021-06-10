@@ -129,7 +129,7 @@ module ICU
     def opponent=(opponent)
       @opponent = case opponent
         when nil     then nil
-        when Fixnum  then opponent
+        when Integer then opponent
         when /^\s*$/ then nil
         else opponent.to_i
       end

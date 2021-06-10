@@ -72,7 +72,7 @@ module ICU
         names.each do |name|
           attr_accessor(name) do |val|
             tmp = val.to_i
-            raise "invalid integer (#{val}) for #{name}" unless val.is_a?(Fixnum) || (val.is_a?(::String) && val.include?(tmp.to_s))
+            raise "invalid integer (#{val}) for #{name}" unless val.is_a?(Integer) || (val.is_a?(::String) && val.include?(tmp.to_s))
             tmp
           end
         end
@@ -83,7 +83,7 @@ module ICU
           attr_accessor(name) do |val|
             tmp = case val
               when nil      then nil
-              when Fixnum   then val
+              when Integer   then val
               when /^\s*$/  then nil
               else val.to_i
             end
@@ -108,7 +108,7 @@ module ICU
           attr_accessor(name) do |val|
             tmp = case val
               when nil      then nil
-              when Fixnum   then val
+              when Integer   then val
               when /^\s*$/  then nil
               else val.to_i
             end
