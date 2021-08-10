@@ -133,6 +133,10 @@ module ICU
         expect(Player.new('Eamon', 'Keogh', 6, :title => 'nm').title).to eq('NM')
         expect { Player.new('Mark', 'Orr', 3, :title => 'Dr') }.to raise_error(/invalid chess title/)
       end
+
+      it "should ignore Arena titles" do
+        expect(Player.new('Darko', 'Polimac', 3, :title => 'AGM').title).to be_nil
+      end
     end
 
     context "rating" do

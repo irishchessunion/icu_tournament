@@ -153,6 +153,7 @@ module ICU
       @title << 'M' if @title.match(/[A-LN-Z]$/)
       @title = 'IM' if @title == 'M'
       @title = 'WIM' if @title == 'WM'
+      @title = '' if @title.match(/^(AFM|AIM|AGM)$/)
       @title = nil if @title == ''
       raise "invalid chess title (#{title})" unless @title.nil? || @title.match(/^W?[GIFCN]M$/)
     end
