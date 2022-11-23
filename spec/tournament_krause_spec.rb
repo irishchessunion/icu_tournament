@@ -830,6 +830,13 @@ KRAUSE
           file = "#{@s}/armstrong_2012_with_bom.tab"
           expect { @p.parse_file!(file) }.not_to raise_error
         end
+
+        it "should handle Ulster Masters 2022 (H, Z, F for byes)" do
+          file = "#{@s}/UlsterMastersSeniors2022.tab"
+          expect { @p.parse_file!(file) }.not_to raise_error
+        end
+
+
       end
     end
   end

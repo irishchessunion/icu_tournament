@@ -431,6 +431,19 @@ module ICU
         end
       end
 
+      def normalize_score(score)
+        if score == "H"
+          return "="
+        elsif score == "Z"
+          return "0"
+        elsif score == "U"
+          return "-"
+        elsif score == "F"
+          return 1
+        end
+        score
+      end
+
       def add_result(round, player, data, full_byes, half_byes)
         data.strip!
         if data.match(/^-?$/)
@@ -438,14 +451,14 @@ module ICU
           return 0.0
         end
         data = "#{data} -" if data.match(/^(\d+)? (w|b|-)$/)
-        if data.match(/^(0{1,4}|[1-9]\d{0,3}) (w|b|-) (1|0|=|\+|-)$/)
+        if data.match(/^(0{1,4}|[1-9]\d{0,3}) (w|b|-) (H|F|Z|U|1|0|=|\+|-)$/)
           opponent = $1.to_i
           colour   = $2
-          score    = $3
+          score    = normalize_score $3
         elsif data.match(/- (1|0|=|\+|-)$/)
           opponent = 0
           colour = "-"
-          score = $1
+          score = normalize_score $1
         else
           raise "invalid result '#{data}'"
         end
