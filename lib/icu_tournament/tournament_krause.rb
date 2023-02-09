@@ -439,7 +439,7 @@ module ICU
         elsif score == "U"
           return "-"
         elsif score == "F"
-          return 1
+          return "+"
         end
         score
       end
