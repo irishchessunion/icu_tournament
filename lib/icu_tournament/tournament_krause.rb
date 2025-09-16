@@ -194,6 +194,7 @@ module ICU
     # [112 Deputy(ies)]             Get or set with _deputy_. Free text.
     # [122 Time control]            Get or set with _time_control_. Free text.
     # [132 Round dates]             Get an array of dates using _round_dates_ or one specific round date by calling _round_date_ with a round number.
+    # [142 Number of rounds]        Not used. Treated as comment in parsed files. Can be determined from the size of the _round_dates_ array
     #
     class Krause
       attr_reader :error, :comments
@@ -252,6 +253,7 @@ module ICU
               when '112' then @tournament.deputy = @data        # deputy(ies)
               when '122' then @tournament.time_control = @data  # time control
               when '132' then add_round_dates(arg)              # round dates
+              when '142' then add_comment                       # number of rounds (calculated from 132 records)
               else raise "invalid DIN #{din}"
             end
           rescue => err
